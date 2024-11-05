@@ -1,0 +1,75 @@
+@font-face {
+    font-family: 'Roboto';
+    src: url('../fonts/Roboto-Regular.ttf');
+}
+
+@font-face {
+    font-family: 'Roboto-Bold';
+    src: url('../fonts/Roboto-Bold.ttf');
+}
+
+@font-face {
+    font-family: 'Share-Tech';
+    src: url('../fonts/ShareTech-Regular.ttf');
+}
+
+@font-face {
+    font-family: 'Poppins-Bold';
+    src: url('../fonts/Poppins-Bold.ttf');
+}
+
+@font-face {
+    font-family: 'Poppins-Regular';
+    src: url('../fonts/Poppins-Regular.ttf');
+}
+
+html {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    background-color: #04132A;
+    font-family: 'Roboto';
+}
+
+main.main {
+    height: 100vh;
+    background: #04132A;
+    background-size: cover;
+}
+
+.font-share-tech {
+    font-family: 'Share-Tech';
+}
+
+.poppins-bold {
+    font-family: 'Poppins-Bold';
+}
+
+.poppins-regular {
+    font-family: 'Poppins-Regular';
+}
+
+.roboto {
+    font-family: 'Roboto';
+}
+
+.roboto-bold {
+    font-family: 'Roboto-Bold';
+}
+
+::-webkit-scrollbar {
+    width: 10px;
+
+    @media screen and (max-width: 768px) {
+        display: none;
+    }
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: gray;
+    border-radius: 999px;
+
+    &:active {
+        background-color: white;
+    }
+}
