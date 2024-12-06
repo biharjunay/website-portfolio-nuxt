@@ -20,7 +20,7 @@
             <div class="mt-10">
                 <h6 class="poppins-bold">Experience</h6>
                 <ol class="relative space-y-2 mb-16 mt-5" style="counter-reset: step 0;">
-                    <li v-for="item in [1, 2, 3]"
+                    <li
                         class="relative pl-10 xl:grid grid-cols-5 gap-16 before:content-[counter(step)] before:absolute before:left-0 before:flex before:items-center before:justify-center before:w-[calc(1.375rem+1px)] before:h-[calc(1.375rem+1px)] before:text-[0.625rem] before:font-bold before:text-slate-700 before:rounded-md before:shadow-sm before:ring-1 before:ring-slate-900/5 before:bg-white dark:before:bg-slate-700 dark:before:text-slate-200 dark:before:ring-0 dark:before:shadow-none dark:before:highlight-white/5 pb-8 after:absolute after:top-[calc(1.875rem+1px)] after:bottom-0 after:left-[0.6875rem] after:w-px after:bg-slate-200 dark:after:bg-slate-200/5 w-full"
                         style="counter-increment: step 1;">
                         <div class="mb-6 col-span-full xl:mb-0 w-full">

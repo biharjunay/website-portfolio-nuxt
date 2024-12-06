@@ -7,7 +7,7 @@
         <div class="min-h-screen mt-10">
             <div class="grid-stack">
                 <div v-for="widget in widgets" :key="widget.id" :id="widget.id" :gs-id="widget.id" :gs-x="widget.grid.x"
-                    :gs-y="widget.grid.y" :gs-w="widget.grid.w" :gs-h="widget.grid.h">
+                    :gs-y="widget.grid.y" :gs-w="widget.grid.w" :gs-h="widget.grid.h" @click="openModal">
                     <div
                         class="grid-stack-item-content p-4 bg-[url('@/assets/images/background.jpg')] bg-cover bg-center rounded-md shadow-md flex items-center justify-center text-gray-700 cursor-pointer hover:bg-slate-500 active:cursor-grabbing">
                         <span class="text-2xl">{{ widget.title }}</span>
@@ -16,6 +16,9 @@
             </div>
         </div>
     </div>
+    <Modal ref="modal">
+        <div class="text-black">fsdaf nsafh</div>
+    </Modal>
 </template>
 
 <script setup lang="ts">
@@ -35,6 +38,7 @@ interface GridItem {
     };
 }
 
+const modal = useTemplateRef('modal')
 const grid = ref<GridStack | null>(null);
 const widgets = ref<GridItem[]>([
     {
@@ -78,6 +82,10 @@ function makeWidgets(widgets: GridItem[]) {
     widgets.forEach(widget => {
         grid.value?.makeWidget(`#${widget.id}`);
     });
+}
+
+function openModal() {
+    modal.value?.openModal()
 }
 
 onMounted(() => {
