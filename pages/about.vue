@@ -20,25 +20,15 @@
             <div class="mt-10">
                 <h6 class="poppins-bold">Experience</h6>
                 <ol class="relative space-y-2 mb-16 mt-5" style="counter-reset: step 0;">
-                    <li
-                        class="relative pl-10 xl:grid grid-cols-5 gap-16 before:content-[counter(step)] before:absolute before:left-0 before:flex before:items-center before:justify-center before:w-[calc(1.375rem+1px)] before:h-[calc(1.375rem+1px)] before:text-[0.625rem] before:font-bold before:text-slate-700 before:rounded-md before:shadow-sm before:ring-1 before:ring-slate-900/5 before:bg-white dark:before:bg-slate-700 dark:before:text-slate-200 dark:before:ring-0 dark:before:shadow-none dark:before:highlight-white/5 pb-8 after:absolute after:top-[calc(1.875rem+1px)] after:bottom-0 after:left-[0.6875rem] after:w-px after:bg-slate-200 dark:after:bg-slate-200/5 w-full"
+
+                    <li class="relative pl-10 xl:grid grid-cols-5 gap-16 before:content-[counter(step)] before:absolute before:left-0 before:flex before:items-center before:justify-center before:w-[calc(1.375rem+1px)] before:h-[calc(1.375rem+1px)] before:text-[0.625rem] before:font-bold before:text-slate-700 before:rounded-md before:shadow-sm before:ring-1 before:ring-slate-900/5 before:bg-white dark:before:bg-slate-700 dark:before:text-slate-200 dark:before:ring-0 dark:before:shadow-none dark:before:highlight-white/5 pb-8 after:absolute after:top-[calc(1.875rem+1px)] after:bottom-0 after:left-[0.6875rem] after:w-px after:bg-slate-200 dark:after:bg-slate-200/5 w-full"
                         style="counter-increment: step 1;">
                         <div class="mb-6 col-span-full xl:mb-0 w-full">
-                            <h4 class="text-lg leading-6 poppins-bold mb-2">Front End
-                                Developer</h4>
+                            <h4 class="text-lg leading-6 poppins-bold mb-2">Front End Developer</h4>
                             <p class="roboto-bold text-lg">E solution</p>
                             <b class="poppins-bold">2020 - 2024</b>
                             <div class="prose prose-slate prose-sm dark:prose-dark">
-                                <p class="text-sm mt-3">I'm a Frontend Developer with a focus on building robust
-                                    web-based applications
-                                    using Angular and
-                                    mobile frontend with NativeScript. Skilled in TypeScript programming with an
-                                    object-oriented
-                                    programming paradigm, implementing software design patterns, and adept at bug fixing
-                                    and problem
-                                    solving.
-                                    Passionate about creating user-friendly interfaces and delivering high-quality
-                                    software solutions.</p>
+                                <p class="text-sm mt-3">I'm a Frontend Developer with a focus on building robust web-based applications using Angular and mobile frontend with NativeScript. Skilled in TypeScript programming with an object-oriented programming paradigm, implementing software design patterns, and adept at bug fixing and problem solving. Passionate about creating user-friendly interfaces and delivering high-quality software solutions.</p>
                             </div>
                         </div>
                     </li>
@@ -48,9 +38,8 @@
             <div class="mt-10">
                 <h6 class="poppins-bold">Education</h6>
                 <ol class="relative space-y-2 mt-5" style="counter-reset: step 0;">
-                    <li v-for="item in [1, 2]"
-                        class="relative pl-10 xl:grid grid-cols-5 gap-16 before:content-[counter(step)] before:absolute before:left-0 before:flex before:items-center before:justify-center before:w-[calc(1.375rem+1px)] before:h-[calc(1.375rem+1px)] before:text-[0.625rem] before:font-bold before:text-slate-700 before:rounded-md before:shadow-sm before:ring-1 before:ring-slate-900/5 before:bg-white dark:before:bg-slate-700 dark:before:text-slate-200 dark:before:ring-0 dark:before:shadow-none dark:before:highlight-white/5 pb-8 after:absolute after:top-[calc(1.875rem+1px)] after:bottom-0 after:left-[0.6875rem] after:w-px after:bg-slate-200 dark:after:bg-slate-200/5 w-full"
-                        style="counter-increment: step 1;">
+                    <li class="relative pl-10 xl:grid grid-cols-5 gap-16 before:content-[counter(step)] before:absolute before:left-0 before:flex before:items-center before:justify-center before:w-[calc(1.375rem+1px)] before:h-[calc(1.375rem+1px)] before:text-[0.625rem] before:font-bold before:text-slate-700 before:rounded-md before:shadow-sm before:ring-1 before:ring-slate-900/5 before:bg-white dark:before:bg-slate-700 dark:before:text-slate-200 dark:before:ring-0 dark:before:shadow-none dark:before:highlight-white/5 pb-8 after:absolute after:top-[calc(1.875rem+1px)] after:bottom-0 after:left-[0.6875rem] after:w-px after:bg-slate-200 dark:after:bg-slate-200/5 w-full"
+                        style="counter-increment: step 1;" v-for="sdaf of [1,2,3]">
                         <div class="mb-6 col-span-full xl:mb-0 w-full">
                             <h4
                                 class="text-lg leading-6 text-white font-semibold poppins-bold mb-2 dark:text-slate-200">
@@ -129,10 +118,10 @@
             Or Check my CV Below</h1>
         <div class="grid grid-cols-1 place-items-center">
             <div class="rounded-lg bg-slate-700 w-full divide-y divide-slate-100">
-                <div class="flex justify-end gap-3 px-3 py-2">
-                    <i class="w-5 h-5 rounded-full bg-red-400"></i>
-                    <i class="w-5 h-5 rounded-full bg-yellow-400"></i>
-                    <i class="w-5 h-5 rounded-full bg-green-400"></i>
+                <div class="flex justify-start gap-2 px-3 py-2">
+                    <i class="w-3 h-3 rounded-full bg-red-500"></i>
+                    <i class="w-3 h-3 rounded-full bg-yellow-500"></i>
+                    <i class="w-3 h-3 rounded-full bg-green-500"></i>
                 </div>
                 <div class="w-full h-96 overflow-y-auto rounded-b-lg">
                     <iframe :src="pdfUrl" class="w-full h-full" frameborder="0"></iframe>

@@ -14,19 +14,19 @@ export default defineNuxtConfig({
     },
   },
   nitro: {
-    experimental: {
-      database: true
-    },
-    database: {
-      default: {
-        connector: 'sqlite',
-        options: { name: 'fsdfdsf' }
-      },
-    }
   },
   hooks: {
     ready: () => {
       console.log('ready')
+    }
+  },
+  vite: {
+    css: {
+      preprocessorOptions: {
+        scss: {
+          api: 'modern'
+        }
+      }
     }
   }
 })
