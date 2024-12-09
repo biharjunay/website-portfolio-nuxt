@@ -4,23 +4,15 @@
             class="poppins-bold text-3xl bg-gradient-to-r from-slate-200 to-slate-600 inline-block text-transparent bg-clip-text">
             Introducing myself</h1>
         <img class="rounded-full w-32 h-32 mt-10" src="@/assets/images/profiles.jpeg" alt="profile pictures">
-        <h1 class="poppins-bold text-2xl mt-5">Yusuf Biharjuna <i
-                class="fa-solid fa-badge-check ml-2 text-blue-400"></i>
+        <h1 class="poppins-bold text-2xl mt-5">Yusuf Biharjuna <i class="fa-solid fa-badge-check ml-2 text-blue-400"></i>
         </h1>
         <span class="mt-5">Software Developer</span>
-        <p class="mt-5">I currently work as a Software Developer (focusing on Web and Mobile Development). I have so
-            much
-            experience in Computers. Not only in programming. but also, in Network engineering and graphic design.
-            Passionate
-            about computer makes me want to learn more. Anywhere, anytime</p>
-        <h1
-            class="poppins-bold text-3xl mt-10 bg-gradient-to-r from-slate-200 to-slate-600 inline-block text-transparent bg-clip-text">
-            Education and Experience</h1>
+        <p class="mt-5">I currently work as a Software Developer (focusing on Web and Mobile Development). I have so much experience in Computers. Not only in programming. but also, in Network engineering and graphic design. Passionate about computer makes me want to learn more. Anywhere, anytime</p>
+        <h1 class="poppins-bold text-3xl mt-10 bg-gradient-to-r from-slate-200 to-slate-600 inline-block text-transparent bg-clip-text">Education and Experience</h1>
         <div class="w-full grid grid-cols-1 md:grid-cols-2">
             <div class="mt-10">
                 <h6 class="poppins-bold">Experience</h6>
                 <ol class="relative space-y-2 mb-16 mt-5" style="counter-reset: step 0;">
-
                     <li class="relative pl-10 xl:grid grid-cols-5 gap-16 before:content-[counter(step)] before:absolute before:left-0 before:flex before:items-center before:justify-center before:w-[calc(1.375rem+1px)] before:h-[calc(1.375rem+1px)] before:text-[0.625rem] before:font-bold before:text-slate-700 before:rounded-md before:shadow-sm before:ring-1 before:ring-slate-900/5 before:bg-white dark:before:bg-slate-700 dark:before:text-slate-200 dark:before:ring-0 dark:before:shadow-none dark:before:highlight-white/5 pb-8 after:absolute after:top-[calc(1.875rem+1px)] after:bottom-0 after:left-[0.6875rem] after:w-px after:bg-slate-200 dark:after:bg-slate-200/5 w-full"
                         style="counter-increment: step 1;">
                         <div class="mb-6 col-span-full xl:mb-0 w-full">
@@ -32,7 +24,6 @@
                             </div>
                         </div>
                     </li>
-
                 </ol>
             </div>
             <div class="mt-10">
@@ -41,10 +32,7 @@
                     <li class="relative pl-10 xl:grid grid-cols-5 gap-16 before:content-[counter(step)] before:absolute before:left-0 before:flex before:items-center before:justify-center before:w-[calc(1.375rem+1px)] before:h-[calc(1.375rem+1px)] before:text-[0.625rem] before:font-bold before:text-slate-700 before:rounded-md before:shadow-sm before:ring-1 before:ring-slate-900/5 before:bg-white dark:before:bg-slate-700 dark:before:text-slate-200 dark:before:ring-0 dark:before:shadow-none dark:before:highlight-white/5 pb-8 after:absolute after:top-[calc(1.875rem+1px)] after:bottom-0 after:left-[0.6875rem] after:w-px after:bg-slate-200 dark:after:bg-slate-200/5 w-full"
                         style="counter-increment: step 1;" v-for="sdaf of [1,2,3]">
                         <div class="mb-6 col-span-full xl:mb-0 w-full">
-                            <h4
-                                class="text-lg leading-6 text-white font-semibold poppins-bold mb-2 dark:text-slate-200">
-                                Computer and
-                                Network Engineering</h4>
+                            <h4 class="text-lg leading-6 text-white font-semibold poppins-bold mb-2 dark:text-slate-200">Computer and Network Engineering</h4>
                             <p class="roboto-bold text-lg">SMK Negeri 2 Purwodadi</p>
                             <b class="poppins-bold">2020 - 2023</b>
                             <div class="prose prose-slate prose-sm dark:prose-dark">

@@ -84,8 +84,8 @@ function makeWidgets(widgets: GridItem[]) {
     });
 }
 
-function openModal() {
-    modal.value?.openModal()
+function openModal(event: Event) {
+    if (!(event.target as HTMLElement).classList.contains('ui-resizable-handle')) modal.value?.openModal()
 }
 
 onMounted(() => {
