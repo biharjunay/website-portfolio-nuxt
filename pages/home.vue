@@ -22,7 +22,7 @@
       </div>
       <div class="w-full lg:w-5/12 flex flex-col md:flex-row gap-5">
         <div class="w-full md:w-6/12 bg-black flex flex-col rounded-3xl p-5 overflow-auto">
-          <h6 class="text-xl">Tech Stack</h6>
+          <!-- <h6 class="text-xl">Tech Stack</h6> -->
           <div
             class="w-full grid grid-rows-2 grid-flow-col md:grid-flow-row md:grid-rows-none md:grid-cols-2 place-items-center self-center mt-5 tech-stack-container">
             <img class="tech-stack-img" src="@/assets/images/js.png" alt="tech stack icon">
@@ -36,23 +36,11 @@
             <img class="tech-stack-img" src="@/assets/images/spring.png" alt="tech stack icon">
           </div>
         </div>
-        <div class="w-full lg:w-6/12 flex flex-col justify-between bg-black rounded-3xl">
-          <h6 class="text-xl m-5">What can I do?</h6>
-          <div class="h-[90%] bg-zinc-950 rounded-3xl">
-            <div class="flex flex-col justify-center items-center overflow-auto mb-5">
-              <span class="w-10 h-1 my-3 bg-gray-400 rounded-full"></span>
-              <div class="flex py-2">
-                <span>Web Development</span>
-              </div>
-              <div class="flex py-2">
-                <span>Mobile Development</span>
-              </div>
-              <div class="flex py-2">
-                <span>Network Administrator</span>
-              </div>
-              <div class="flex py-2">
-                <span>Database Administrator</span>
-              </div>
+        <div class="w-full lg:w-6/12 flex flex-col justify-between bg-gradient-to-tr from-indigo-950 to-gray-900 rounded-3xl">
+          <!-- <h6 class="text-xl m-5">What can I do?</h6> -->
+          <div class="h-full rounded-3xl p-10">
+            <div class="grid grid-cols-2 overflow-auto mb-5">
+              <i class="fa-solid fa-computer text-4xl" v-for="item of [1,2,3,4,5,6]"></i>
             </div>
           </div>
         </div>
