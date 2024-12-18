@@ -16,7 +16,8 @@ export default defineNuxtConfig({
   nitro: {
     experimental: {
       tasks: true
-    }
+    },
+    plugins: ['plugins/error.ts'],
   },
   hub: {
     database: true
