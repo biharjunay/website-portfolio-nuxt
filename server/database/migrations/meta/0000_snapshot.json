@@ -1,7 +1,7 @@
 {
   "version": "6",
   "dialect": "sqlite",
-  "id": "e2a3c5a8-4477-4daa-a315-5f4668bf655a",
+  "id": "0890e963-b0c8-4711-982c-52c5994246a7",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "tables": {
     "achievements": {
