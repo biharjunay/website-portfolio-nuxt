@@ -3,7 +3,7 @@
         <div class="flex flex-col gap-10">
             <img class="w-14 hidden lg:block" src="@/assets/images/logo-black.png" alt="image">
             <div class="flex flex-col gap-4 items-center">
-                <NuxtLink to="" class="bg-white w-10 h-10 text-center flex justify-center items-center rounded-full cursor-pointer hover:text-white hover:bg-black"
+                <NuxtLink to="" class="bg-white w-10 h-10 text-center flex justify-center items-center rounded-full cursor-pointer hover:text-white hover:bg-black transition-all duration-500"
                     v-for="item in sidebarItem">
                     <i class="text-lg m-auto" :class="item.icon"></i>
                 </NuxtLink>
