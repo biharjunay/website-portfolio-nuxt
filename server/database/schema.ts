@@ -21,7 +21,7 @@ export const portfolios = sqliteTable('portfolio', {
 export const educations = sqliteTable('educations', {
   id: integer('id').primaryKey(),
   userId: integer('user_id').references(() => users.id),
-  name: text('name').notNull(),
+  major: text('major').notNull(),
   educationName: text('education_name').notNull(),
   monthStart: integer('month_start').notNull(),
   monthEnd: integer('month_end').notNull(),

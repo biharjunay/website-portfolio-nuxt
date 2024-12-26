@@ -1,14 +1,14 @@
 import Joi from "joi"
 
 const validator = Joi.object({
-    user_id: Joi.number(),
-    name: Joi.string(),
-    educationName: Joi.string(),
-    monthStart: Joi.number(),
-    monthEnd: Joi.number(),
-    yearStart: Joi.number(),
-    yearEnd: Joi.number(),
-    description: Joi.string()
+    user_id: Joi.number().required().required(),
+    major: Joi.string().required(),
+    educationName: Joi.string().required(),
+    monthStart: Joi.number().required(),
+    monthEnd: Joi.number().required(),
+    yearStart: Joi.number().required(),
+    yearEnd: Joi.number().required(),
+    description: Joi.string().required()
 })
 
 export default defineEventHandler(async event => {
