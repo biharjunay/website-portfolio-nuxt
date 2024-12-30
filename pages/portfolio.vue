@@ -71,7 +71,7 @@ const widgets = ref<GridItem[]>([
 function initGridStack() {
     grid.value = GridStack.init({
         column: 4,
-        cellHeight: 100,
+        cellHeight: 200,
         minRow: 1,
         margin: 10,
     });

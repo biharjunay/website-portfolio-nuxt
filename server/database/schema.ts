@@ -15,7 +15,8 @@ export const portfolios = sqliteTable('portfolio', {
   title: integer('title').notNull(),
   description: text('description'),
   projectUrl: text('project_url'),
-  availableOn: text('available_on')
+  availableOn: text('available_on'),
+  techStack: text('tech_stack')
 })
 
 export const educations = sqliteTable('educations', {
