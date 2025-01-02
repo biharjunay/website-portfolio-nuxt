@@ -13,12 +13,10 @@ export default defineEventHandler(async event => {
         statusCode: 401,
         message: "Invalid email or password"
     })
-
-    const checkPassword = await bcrypt.compare(user.password, password)
+    const checkPassword = await bcrypt.compare(password, user.password)
     if (!checkPassword) throw createError({
         statusCode: 401,
         message: "Invalid email or password"
     })
-
     return user
 })

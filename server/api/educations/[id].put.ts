@@ -1,31 +1,26 @@
-import Joi from "joi"
+import { z } from "zod"
+import validateUserID from "~/server/helpers/userid-validation"
 
-const validator = Joi.object({
-    user_id: Joi.number().required().required(),
-    major: Joi.string().required(),
-    educationName: Joi.string().required(),
-    monthStart: Joi.number().required(),
-    monthEnd: Joi.number().required(),
-    yearStart: Joi.number().required(),
-    yearEnd: Joi.number().required(),
-    description: Joi.string().required()
+const bodySchema = z.object({
+    userId: z.number().min(1),
+    major: z.string().nonempty(),
+    educationName: z.string().nonempty(),
+    monthStart: z.number().min(1),
+    monthEnd: z.number().min(1),
+    yearStart: z.number().min(1),
+    yearEnd: z.number().min(1),
+    description: z.string().nonempty(),
+}).superRefine(async ({ userId }, ctx) => {
+    await validateUserID(userId, ctx)
 })
 
 export default defineEventHandler(async event => {
-    const id = getRouterParam(event, 'id')!
-    try {
-        const body = await readBody(event)
-        const validate = await validator.validateAsync(body)
-        return await useDrizzle().update(tables.educations).set(validate).where(eq(tables.educations.id, parseInt(id)))
-    } catch (err: any) {
-        if (err instanceof Joi.ValidationError) {
-            throw createError({
-                status: 422,
-                message: err.message
-            })
-        }
-        throw createError({
-            message: err.message
-        })
-    }
+    const id = getRouterParam(event, "id")!
+    const data = (await useDrizzle().select().from(tables.educations).where(eq(tables.educations.id, parseInt(id))))[0]
+    if (!data) throw createError({
+        statusCode: 422,
+        message: "Data not found"
+    })
+    const body = await readValidatedBody(event, bodySchema.parseAsync)
+    return await useDrizzle().insert(tables.educations).values(body).returning()
 })

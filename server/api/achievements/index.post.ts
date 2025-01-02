@@ -1,22 +1,15 @@
-import Joi from "joi"
+import { z } from "zod"
+import validateUserID from "~/server/helpers/userid-validation"
 
-const validator = Joi.object({
-    user_id: Joi.number().required(),
-    title: Joi.string().required(),
-    year: Joi.number().required(),
-    description: Joi.string().required(),
+const bodySchema = z.object({
+    userId: z.number().min(1),
+    title: z.string().nonempty(),
+    year: z.number(),
+    description: z.string()
+}).superRefine(async ({userId}, ctx) => {
+    await validateUserID(userId, ctx)
 })
 export default defineEventHandler(async event => {
-    const body = await readBody(event)
-    try {
-        const validate = await validator.validateAsync(body)
-        return await useDrizzle().insert(tables.achievements).values(validate)
-    } catch (err) {
-        if (err instanceof Joi.ValidationError) {
-            return createError({    
-                message: err.message,
-                status: 422
-            })
-        }
-    } 
+    const body = await readValidatedBody(event, bodySchema.parse)
+    return await useDrizzle().insert(tables.achievements).values(body).returning()
 })

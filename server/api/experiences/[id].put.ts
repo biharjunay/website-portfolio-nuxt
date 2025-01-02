@@ -1,26 +1,24 @@
-import Joi from "joi"
+import { z } from "zod"
+import validateUserID from "~/server/helpers/userid-validation"
 
-const validator = Joi.object({
-    user_id: Joi.number(),
-    name: Joi.string().required(),
-    education_name: Joi.string().required(),
-    month_start: Joi.number().required(),
-    month_end: Joi.number().required(),
-    year_start: Joi.number().required(),
-    year_end: Joi.number().required(),
+const bodySchema = z.object({
+    userId: z.number(),
+    name: z.string().nonempty(),
+    officeName: z.string().nonempty(),
+    monthStart: z.number().min(1),
+    monthEnd: z.number().min(1),
+    yearStart: z.number().min(1),
+    yearEnd: z.number().min(1),
+}).superRefine(async ({userId}, ctx) => {
+    await validateUserID(userId, ctx)
 })
 export default defineEventHandler(async event => {
-    const id = getRouterParam(event, 'id')!
-    try {
-        const body = await readBody(event)
-        const validate = await validator.validateAsync(body)
-        return await useDrizzle().update(tables.experiences).set(validate).where(eq(tables.experiences.id, parseInt(id)))
-    } catch (err) {
-        if (err instanceof Joi.ValidationError) {
-            return createError({
-                status: 422,
-                message: err.message
-            })
-        }
-    }
+    const id = getRouterParam(event, "id")!
+    const data = (await useDrizzle().select().from(tables.experiences).where(eq(tables.experiences.id, parseInt(id))))[0]
+    if (!data) throw createError({
+        statusCode: 422,
+        message: "Data is not found"
+    })
+    const body = await readValidatedBody(event, bodySchema.parse)
+    return await useDrizzle().update(tables.experiences).set(body).where(eq(tables.experiences.id, parseInt(id))).returning()
 })
