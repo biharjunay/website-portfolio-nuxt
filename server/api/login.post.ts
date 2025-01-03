@@ -18,5 +18,8 @@ export default defineEventHandler(async event => {
         statusCode: 401,
         message: "Invalid email or password"
     })
+    await setUserSession(event, {
+        user
+    })
     return user
 })

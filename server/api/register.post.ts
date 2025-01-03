@@ -1,5 +1,4 @@
 import { z } from "zod"
-import successResponse from "~/constants/success-response"
 import * as bcrypt from "bcrypt"
 
 const bodySchema = z.object({
