@@ -14,10 +14,26 @@
                     </div>
                 </div>
             </div>
+            <AuthState>
+                <div class="flex justify-center items-center mt-5">
+                    <button class="text-2xl text-zinc-300" @click="addPortfolio">
+                        <i class="fas fa-circle-plus"></i> Add Portfolio
+                    </button>
+                </div>
+            </AuthState>
         </div>
     </div>
     <Modal ref="modal">
         <div class="text-black">fsdaf nsafh</div>
+    </Modal>
+    <Modal ref="modalForm">
+        <div class="flex flex-col md:flex-row">
+            <div class="w-full md:w-1/2">
+                <!-- <img src="@/assets/images/programmer.avif" alt="Image Portfolio" class="bg-blue-500"> -->
+                 <ImageDragDrop></ImageDragDrop>
+            </div>
+            <div class="w-full md:w-1/2"></div>
+        </div>
     </Modal>
 </template>
 
@@ -39,6 +55,7 @@ interface GridItem {
 }
 
 const modal = useTemplateRef('modal')
+const modalForm = useTemplateRef('modalForm')
 const grid = ref<GridStack | null>(null);
 const widgets = ref<GridItem[]>([
     {
@@ -86,6 +103,10 @@ function makeWidgets(widgets: GridItem[]) {
 
 function openModal(event: Event) {
     if (!(event.target as HTMLElement).classList.contains('ui-resizable-handle')) modal.value?.openModal()
+}
+
+function addPortfolio() {
+    modalForm.value?.openModal()
 }
 
 onMounted(() => {

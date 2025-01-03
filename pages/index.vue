@@ -1,6 +1,8 @@
 <template>sdafasdfas</template>
 <script setup lang="ts">
+const { loggedIn, user, session, fetch, clear } = useUserSession()
 onMounted(() => {
-    navigateTo('/home')
+    console.log(loggedIn.value)
+    // navigateTo('/home')
 })
 </script>
