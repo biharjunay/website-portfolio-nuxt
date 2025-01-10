@@ -1,1 +1,0 @@
-import{m as u,E as p,u as e,O as r,V as m,W as c}from"./xD3aoqXZ.js";const f=u({__name:"AuthState",setup(d){const{loggedIn:o,user:a,session:n,clear:t,ready:l}=p();return(s,i)=>e(l)?r(s.$slots,"default",m(c({key:0},{loggedIn:e(o),user:e(a),session:e(n),clear:e(t)}))):r(s.$slots,"placeholder",{key:1})}});export{f as _};
