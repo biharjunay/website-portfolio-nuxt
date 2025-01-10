@@ -1,0 +1,16 @@
+{
+  "date": "2025-01-10T09:22:28.511Z",
+  "preset": "vercel",
+  "framework": {
+    "name": "nuxt",
+    "version": "3.15.1"
+  },
+  "versions": {
+    "nitro": "2.10.4"
+  },
+  "commands": {
+    "preview": "",
+    "deploy": ""
+  },
+  "config": {}
+}
