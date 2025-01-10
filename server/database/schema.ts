@@ -16,7 +16,7 @@ export const portfolios = sqliteTable('portfolio', {
   projectUrl: text('project_url'),
   availableOn: text('available_on'),
   techStack: text('tech_stack'),
-  imageUrl: text('iamge_url')
+  imageUrl: text('image_url')
 })
 
 export const educations = sqliteTable('educations', {

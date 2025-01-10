@@ -5,7 +5,6 @@ export default defineNuxtConfig({
   css: ['~/assets/scss/main.scss'],
   modules: [
     'nuxt-file-storage',
-    '@nuxthub/core',
     'nuxt-echarts',
     'nuxt-authorization',
     'nuxt-auth-utils',
@@ -26,12 +25,11 @@ export default defineNuxtConfig({
   },
   nitro: {
     experimental: {
-      tasks: true
+      tasks: true,
+      database: true
     },
     plugins: ['plugins/error.ts'],
-  },
-  hub: {
-    database: true
+    preset: "vercel"
   },
   echarts: {
     charts: ['LineChart'],

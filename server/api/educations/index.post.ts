@@ -1,8 +1,6 @@
 import { z } from "zod"
 
-
 const bodySchema = z.object({
-    
     major: z.string().nonempty(),
     educationName: z.string().nonempty(),
     monthStart: z.number().min(1),
@@ -14,5 +12,5 @@ const bodySchema = z.object({
 
 export default defineEventHandler(async event => {
     const body = await readValidatedBody(event, bodySchema.parseAsync)
-    return await useDrizzle().insert(tables.educations).values(body).returning()
+    return drizzleDb.insert(tables.educations).values(body).returning();
 })

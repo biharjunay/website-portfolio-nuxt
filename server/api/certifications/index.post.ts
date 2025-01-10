@@ -20,5 +20,5 @@ const bodySchema = z.object({
 })
 export default defineEventHandler(async event => {
     const body = await readValidatedBody(event, bodySchema.parse)
-    return await useDrizzle().insert(tables.certifications).values(body)
+    return await drizzleDb.insert(tables.certifications).values(body)
 })
