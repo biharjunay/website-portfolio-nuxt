@@ -1,5 +1,6 @@
 import { z } from "zod" 
 import * as bcrypt from "bcrypt"
+import {drizzleDb} from "~/server/utils/drizzle";
 
 const bodySchema = z.object({
     name: z.string().nonempty(),
@@ -22,5 +23,5 @@ export default defineEventHandler(async event => {
     })
     delete body.confirmPassword
     body.password = await bcrypt.hash(body.password, 10)
-    return drizzleDb.insert(tables.heroes).values(body).returning();
+    return await drizzleDb.insert(tables.heroes).values(body).returning()
 })
