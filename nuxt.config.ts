@@ -21,6 +21,9 @@ export default defineNuxtConfig({
       autoprefixer: {},
     },
   },
+  alias: {
+    'string_decoder': 'string_decoder/',
+  },
   nitro: {
     experimental: {
       tasks: true
