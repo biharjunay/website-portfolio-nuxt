@@ -14,7 +14,7 @@ export default defineTask({
                 description: 'I currently work as a Software Developer (focusing on Web and Mobile Development). I have so much experience in Computers. Not only in programming. but also, in Network engineering and graphic design. Passionate about computer makes me want to learn more. Anywhere, anytime'
             }
         ]
-        await useDrizzle().insert(tables.users).values(users)
+        await drizzleDb.insert(tables.users).values(users)
         return { result: 'success' }
     }
 })

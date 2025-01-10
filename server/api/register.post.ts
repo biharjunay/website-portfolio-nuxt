@@ -1,5 +1,6 @@
 import { z } from "zod" 
 import * as bcrypt from "bcrypt"
+import {drizzleDb} from "~/server/utils/drizzle";
 
 const bodySchema = z.object({
     name: z.string().nonempty(),
@@ -15,12 +16,12 @@ const bodySchema = z.object({
 
 export default defineEventHandler(async event => {
     const body = await readValidatedBody(event, bodySchema.parse)
-    const user = (await useDrizzle().select().from(tables.heroes).where(eq(tables.heroes.email, body.email)))[0]
+    const user = (await drizzleDb.select().from(tables.heroes).where(eq(tables.heroes.email, body.email)))[0]
     if (user) throw createError({
         status: 422,
         message: 'Email is exist'
     })
     delete body.confirmPassword
     body.password = await bcrypt.hash(body.password, 10)
-    return await useDrizzle().insert(tables.heroes).values(body).returning()
+    return await drizzleDb.insert(tables.heroes).values(body).returning()
 })

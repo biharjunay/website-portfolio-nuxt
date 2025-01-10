@@ -53,5 +53,5 @@ CREATE TABLE `portfolio` (
 	`project_url` text,
 	`available_on` text,
 	`tech_stack` text,
-	`iamge_url` text
+	`image_url` text
 );

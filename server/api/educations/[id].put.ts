@@ -11,11 +11,11 @@ const bodySchema = z.object({
 
 export default defineEventHandler(async event => {
     const id = getRouterParam(event, "id")!
-    const data = (await useDrizzle().select().from(tables.educations).where(eq(tables.educations.id, parseInt(id))))[0]
+    const data = (await drizzleDb.select().from(tables.educations).where(eq(tables.educations.id, parseInt(id))))[0]
     if (!data) throw createError({
         statusCode: 422,
         message: "Data not found"
     })
     const body = await readValidatedBody(event, bodySchema.parseAsync)
-    return await useDrizzle().insert(tables.educations).values(body).returning()
+    return await drizzleDb.insert(tables.educations).values(body).returning()
 })
