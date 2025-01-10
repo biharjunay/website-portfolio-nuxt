@@ -1,6 +1,6 @@
 import Joi from "joi"
 import { z } from "zod"
-import validateUserID from "~/server/helpers/userid-validation"
+
 
 const validator = Joi.object({
     user_id: Joi.number().required(),
@@ -10,7 +10,7 @@ const validator = Joi.object({
 })
 
 const bodySchema = z.object({
-    userId: z.number().min(1),
+    
     title: z.string().nonempty(),
     yearStart: z.number().min(1),
     yearEnd: z.number().min(1),

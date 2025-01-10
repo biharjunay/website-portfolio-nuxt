@@ -2,5 +2,6 @@
   <NuxtLayout>
     <NuxtRouteAnnouncer />
     <NuxtPage />
+    <AlertComponent />
   </NuxtLayout>
 </template>

@@ -1,28 +1,28 @@
 <template>
-    <!-- <div class="drag-drop-container">
-        <div class="drop-area" @dragover.prevent="onDragOver" @dragleave="onDragLeave" @drop.prevent="onDrop">
-            <p v-if="!imageSrc">Drag & drop an image here or click to upload</p>
+    <div class="drag-drop-container">
+        <div class="drop-area" @dragover.prevent="onDragOver" @dragleave="onDragLeave" @drop.prevent="onDrop" @click="fileInput?.click">
+            <p ref="text" class="text-black m-5 absolute" v-if="!imageSrc">Drag & drop an image here or click to upload</p>
             <input type="file" accept="image/*" @change="onFileChange" ref="fileInput" hidden />
             <img v-if="imageSrc" :src="imageSrc" alt="Preview" class="preview" />
         </div>
-        <button @click="triggerFileInput">Upload Image</button>
-    </div> -->
-    <input type="file" @input="handleFileInput" @change="onchangefile" class="bg-blue-500">
+    </div>
 </template>
 
 <script setup lang="ts">
 import { ref } from "vue";
-const { handleFileInput, files } = useFileStorage()
-const imageSrc = ref<string | null>(null);
-const fileInput = ref<HTMLInputElement | null>(null);
 
-const onchangefile = (e: any) => console.log(files) 
+const fileInput = useTemplateRef("fileInput")
+const text = useTemplateRef("text")
+const imageSrc = ref<string | null>(null);
+const emit = defineEmits(['onChange'])
 
 function onDragOver(event: DragEvent) {
     event.target && (event.target as HTMLElement).classList.add("drag-over");
+    text.value!.style.display = "none"
 };
 function onDragLeave(event: DragEvent) {
     event.target && (event.target as HTMLElement).classList.remove("drag-over");
+    text.value!.style.display = "block"
 };
 function onDrop(event: DragEvent) {
     (event.target as HTMLElement).classList.remove("drag-over");
@@ -42,15 +42,13 @@ function onFileChange(event: Event) {
         alert("Please select a valid image file.");
     }
 };
-function triggerFileInput() {
-    fileInput.value?.click();
-};
 function loadImage(file: File) {
     const reader = new FileReader();
     reader.onload = (e) => {
         imageSrc.value = e.target?.result as string;
     };
     reader.readAsDataURL(file);
+    emit("onChange", file)
 };
 </script>
 
@@ -66,13 +64,13 @@ function loadImage(file: File) {
     border: 2px dashed #ccc;
     border-radius: 8px;
     width: 100%;
-    height: 200px;
+    height: 400px;
     display: flex;
     justify-content: center;
     align-items: center;
     text-align: center;
     cursor: pointer;
-    background-color: #f9f9f9;
+    position: relative;
 }
 
 .drop-area.drag-over {

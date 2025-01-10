@@ -8,7 +8,8 @@ export default defineNuxtConfig({
     '@nuxthub/core',
     'nuxt-echarts',
     'nuxt-authorization',
-    'nuxt-auth-utils'
+    'nuxt-auth-utils',
+    '@pinia/nuxt'
   ],
   plugins: ['~/plugins/vue-select.ts'],
   fileStorage: {

@@ -1,8 +1,8 @@
 import { z } from "zod"
-import validateUserID from "~/server/helpers/userid-validation"
+
 
 const bodySchema = z.object({
-    userId: z.number(),
+    
     name: z.string().nonempty(),
     officeName: z.string().nonempty(),
     monthStart: z.number().min(1),
