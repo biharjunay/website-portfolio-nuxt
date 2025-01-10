@@ -20,42 +20,9 @@
           </div>
         </div>
       </div>
-      <div class="w-full lg:w-5/12 flex flex-col md:flex-row gap-5">
-        <div class="w-full md:w-6/12 bg-black flex flex-col rounded-3xl p-5 overflow-auto">
-          <h6 class="text-xl">Tech Stack</h6>
-          <div
-            class="w-full grid grid-rows-2 grid-flow-col md:grid-flow-row md:grid-rows-none md:grid-cols-2 place-items-center self-center mt-5 tech-stack-container">
-            <img class="tech-stack-img" src="@/assets/images/js.png" alt="tech stack icon">
-            <img class="tech-stack-img" src="@/assets/images/ts.png" alt="tech stack icon">
-            <img class="tech-stack-img" src="@/assets/images/php.png" alt="tech stack icon">
-            <img class="tech-stack-img" src="@/assets/images/java.png" alt="tech stack icon">
-            <img class="tech-stack-img" src="@/assets/images/react.png" alt="tech stack icon">
-            <img class="tech-stack-img" src="@/assets/images/vue.png" alt="tech stack icon">
-            <img class="tech-stack-img" src="@/assets/images/angular.png" alt="tech stack icon">
-            <img class="tech-stack-img" src="@/assets/images/laravel.png" alt="tech stack icon">
-            <img class="tech-stack-img" src="@/assets/images/spring.png" alt="tech stack icon">
-          </div>
-        </div>
-        <div class="w-full lg:w-6/12 flex flex-col justify-between bg-black rounded-3xl">
-          <h6 class="text-xl m-5">What can I do?</h6>
-          <div class="h-[90%] bg-zinc-950 rounded-3xl">
-            <div class="flex flex-col justify-center items-center overflow-auto mb-5">
-              <span class="w-10 h-1 my-3 bg-gray-400 rounded-full"></span>
-              <div class="flex py-2">
-                <span>Web Development</span>
-              </div>
-              <div class="flex py-2">
-                <span>Mobile Development</span>
-              </div>
-              <div class="flex py-2">
-                <span>Network Administrator</span>
-              </div>
-              <div class="flex py-2">
-                <span>Database Administrator</span>
-              </div>
-            </div>
-          </div>
-        </div>
+      <div class="w-full lg:w-5/12 flex flex-col bg-black rounded-3xl">
+        <h1 class="poppins-bold text-xl mt-5 ml-5">Latest Activity</h1>
+        <VChart class="chart" :option="chartOptions" ref="v-chart"></VChart>
       </div>
     </div>
     <div class="h-2/6 flex flex-col md:flex-row gap-5">
@@ -76,23 +43,66 @@
   </main>
 </template>
 
+<script setup lang="ts">
+import type { EChartsOption } from 'echarts';
+
+const chart = useTemplateRef('v-chart')
+const chartOptions = ref<EChartsOption>(
+    {
+        xAxis: {
+            show: false,
+            type: 'category',
+            name: 'b',
+            data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
+        },
+        yAxis: {
+            type: 'value',
+            show: false,
+            name: 'a',
+        },
+        series: [
+            {
+                data: [820, 932, 901, 934, 1290, 1330, 1320],
+                type: 'line',
+                name: 'Legend A',
+                smooth: true,
+            },
+            {
+                data: [233, 345, 121, 880, 1231, 1330, 1320],
+                type: 'line',
+                smooth: true,
+                name: 'Legend B'
+            },
+        ],
+        legend: {
+            data: ['Legend A', 'Legend B'],
+            orient: 'horizontal',
+            bottom: 15,
+            left: 15,
+            textStyle: {
+                fontWeight: 600,
+                color: 'white',
+            },
+        },
+        tooltip: {
+            show: true,
+            borderRadius: 9999
+        },
+        grid: {
+            width: '100%',
+            left: 0
+        }
+    }
+)
+
+onMounted(() => {
+  window.onresize = () => chart.value?.resize()
+})
+</script>
+
 <style scoped lang="scss">
-.tech-stack-container:hover .tech-stack-img {
-  filter: grayscale(100%);
-}
-
-.tech-stack-container .tech-stack-img:hover {
-  filter: none
-}
-
-.tech-stack-img {
-  border-radius: 4px;
-  width: 40px;
-  margin-bottom: 10px;
-  transition: transform 0.3s ease, filter 0.3s ease;
-
-  &:hover {
-    transform: scale(1.25);
-  }
+.chart {
+  height: 100%;
+  min-height: 300px;
 }
 </style>
