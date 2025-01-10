@@ -1,0 +1,1 @@
+import{_ as o,c as s,a as t,o as c}from"./xD3aoqXZ.js";const n={},r={class:"h-full flex justify-center"};function a(f,e){return c(),s("div",r,e[0]||(e[0]=[t("h1",{class:"m-auto"},"Coming Soon",-1)]))}const _=o(n,[["render",a]]);export{_ as default};
