@@ -15,11 +15,14 @@ jobs:
       - name: Install dependencies
         run: bun install
 
+      - name: Install Drizzle
+        run: bun i -g drizzle-kit
+
       - name: Generate migrations
-        run: npx drizzle-kit generate
+        run: drizzle-kit generate
 
       - name: Run migrations
-        run: npx drizzle-kit migrate
+        run: drizzle-kit migrate
 
       - name: Deploy to Vercel
         run: npx vercel deploy --prod
