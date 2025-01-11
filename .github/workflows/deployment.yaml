@@ -22,10 +22,10 @@ jobs:
         run: npm i -g drizzle-kit
 
       - name: Generate migrations
-        run: drizzle-kit generate
+        run: npm run db:generate
 
       - name: Run migrations
-        run: drizzle-kit migrate
+        run: npm run db:migrate
 
       - name: Deploy to Vercel
         run: npx vercel deploy --prod
