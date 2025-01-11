@@ -7,5 +7,6 @@ export default defineConfig({
   dbCredentials: {
     url: './.data/db.sqlite3',
   },
+  
   casing: "camelCase"
 })
