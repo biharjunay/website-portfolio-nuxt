@@ -37,7 +37,7 @@ export default defineNuxtConfig({
   },
   hooks: {
     ready: () => {
-      console.log('ready')
+      console.log(process.cwd)
     }
   },
   vite: {
