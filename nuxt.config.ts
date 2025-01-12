@@ -10,7 +10,6 @@ export default defineNuxtConfig({
     'nuxt-auth-utils',
     '@pinia/nuxt'
   ],
-  plugins: ['~/plugins/vue-select.ts'],
   fileStorage: {
     mount: process.env.MOUNT
   },
@@ -37,8 +36,9 @@ export default defineNuxtConfig({
   },
   hooks: {
     ready: () => {
-      console.log(process.cwd)
-    }
+      console.log(process.cwd())
+    },
+        
   },
   vite: {
     css: {

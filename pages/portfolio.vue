@@ -1,27 +1,29 @@
 <template>
   <div class="min-h-screen p-5">
     <div class="flex justify-between items-center">
-      <h1 class="poppins-bold text-3xl bg-gradient-to-r from-slate-200 to-slate-600 inline-block text-transparent bg-clip-text mb-0">
+      <h1
+        class="poppins-bold text-3xl bg-gradient-to-r from-slate-200 to-slate-600 inline-block text-transparent bg-clip-text mb-0">
         My Portfolio</h1>
-      <AuthState>
-        <button class="bg-slate-500 rounded hover:bg-slate-600 active:bg-slate-700 py-1 px-3" @click="addPortfolio">
+      <AuthState v-slot="{ loggedIn }">
+        <button class="bg-slate-500 rounded hover:bg-slate-600 active:bg-slate-700 py-1 px-3" @click="addPortfolio"
+          v-if="loggedIn">
           <i class="fas fa-plus"></i>
         </button>
       </AuthState>
     </div>
     <div class="grid-stack mt-10">
       <div v-for="widget in widgets" :key="widget.id" :id="widget.id" :gs-id="widget.id" :gs-x="widget.grid.x"
-           :gs-y="widget.grid.y" :gs-w="widget.grid.w" :gs-h="widget.grid.h">
+        :gs-y="widget.grid.y" :gs-w="widget.grid.w" :gs-h="widget.grid.h">
         <div
-            class="grid-stack-item-content relative group p-4 bg-cover bg-center rounded-md shadow-md flex items-center justify-center text-gray-700 cursor-pointer hover:bg-slate-500 active:cursor-grabbing">
+          class="grid-stack-item-content relative group p-4 bg-cover bg-center rounded-md shadow-md flex items-center justify-center text-gray-700 cursor-pointer hover:bg-slate-500 active:cursor-grabbing">
           <img :src="widget.data?.imageUrl"
-               class="absolute w-full h-full object-cover group-hover:brightness-50 duration-200 transition-all">
+            class="absolute w-full h-full object-cover group-hover:brightness-50 duration-200 transition-all">
           <span
-              class="relative hidden group-hover:flex flex-col justify-center items-center gap-4 font-bold text-white">
-                            <h5 class="text-3xl">{{ widget.data?.title }}</h5>
-                            <button class="bg-zinc-600 hover:bg-zinc-700 active:bg-zinc-900 px-3 py-1 rounded-lg"
-                                    @click="() => openModal(widget)">See Detail</button>
-                        </span>
+            class="relative hidden group-hover:flex flex-col justify-center items-center gap-4 font-bold text-white">
+            <h5 class="text-3xl">{{ widget.data?.title }}</h5>
+            <button class="bg-zinc-600 hover:bg-zinc-700 active:bg-zinc-900 px-3 py-1 rounded-lg"
+              @click="() => openModal(widget)">See Detail</button>
+          </span>
         </div>
       </div>
     </div>
@@ -34,24 +36,24 @@
       <div class="w-full md:w-1/2">
         <div class="flex justify-between items-center">
           <h1 class="text-3xl font-bold">{{ itemDetail.data.title }}</h1>
-          <a v-if="!!itemDetail.data.projectUrl" class="px-2 py-1 rounded my-3"
-             :href="itemDetail.data.projectUrl" target="_blank">
+          <a v-if="!!itemDetail.data.projectUrl" class="px-2 py-1 rounded my-3" :href="itemDetail.data.projectUrl"
+            target="_blank">
             <i class="fas fa-external-link"></i>
           </a>
         </div>
         <p class="my-3">{{ itemDetail.data.description }}</p>
         <small>Available on</small>
         <div class="flex gap-3">
-                    <span v-for="(item, index) in parseArray(itemDetail.data.availableOn)" :key="index">
-                        <i :class="item.icon" class="mr-1"></i> {{ item.name }}
-                    </span>
+          <span v-for="(item, index) in parseArray(itemDetail.data.availableOn)" :key="index">
+            <i :class="item.icon" class="mr-1"></i> {{ item.name }}
+          </span>
         </div>
         <br>
         <small class="mt-1">Tech Stack</small>
         <div class="flex gap-3">
-                    <span v-for="(item, index) in parseArray(itemDetail.data.techStack)" :key="index">
-                        <i :class="item.icon" class="mr-1"></i> {{ item.name }}
-                    </span>
+          <span v-for="(item, index) in parseArray(itemDetail.data.techStack)" :key="index">
+            <i :class="item.icon" class="mr-1"></i> {{ item.name }}
+          </span>
         </div>
       </div>
     </div>
@@ -65,52 +67,47 @@
         <form action="" method="post">
           <label for="title">Title</label>
           <input type="text" name="title" id="title" class="border-2 w-full rounded outline-zinc-300 p-2 mb-3"
-                 v-model="form.title">
+            v-model="form.title">
           <label for="description">Description</label>
           <textarea type="text" name="description" id="descriptiotitlen"
-                    class="border-2 w-full rounded outline-zinc-300 p-2 mb-3" v-model="form.description"></textarea>
+            class="border-2 w-full rounded outline-zinc-300 p-2 mb-3" v-model="form.description"></textarea>
           <label for="url">URL</label>
           <input type="text" name="url" id="url" class="border-2 w-full rounded outline-zinc-300 p-2 mb-3"
-                 v-model="form.projectUrl">
+            v-model="form.projectUrl">
           <label for="available">Available On</label>
           <div class="flex items-center gap-3 mb-3" v-for="(item, index) in availableOn" :key="index">
             <div class="flex-grow flex items-stretch gap-3">
               <input type="text" name="available-name" id="available-name"
-                     class="border-2 w-full rounded outline-zinc-300 p-2 flex-grow" placeholder="Name"
-                     v-model="item.name">
+                class="border-2 w-full rounded outline-zinc-300 p-2 flex-grow" placeholder="Name" v-model="item.name">
               <input type="text" name="available-icon" id="available-icon"
-                     class="border-2 w-full rounded outline-zinc-300 p-2 flex-grow" placeholder="Icon"
-                     v-model="item.icon">
+                class="border-2 w-full rounded outline-zinc-300 p-2 flex-grow" placeholder="Icon" v-model="item.icon">
             </div>
             <button type="button" @click="availableOn.splice(index, 1)">
               <i class="fas fa-trash-can text-red-500"></i>
             </button>
           </div>
           <button class="w-full p-2 my-3 rounded bg-slate-600 text-white" type="button"
-                  @click="availableOn.push({ ...formItem })">
+            @click="availableOn.push({ ...formItem })">
             <i class="fas fa-plus"></i>
           </button>
           <label for="tech">Tech Stack</label>
           <div class="flex items-center gap-3 mb-3" v-for="(item, index) in techStack" :key="index">
             <div class="flex-grow flex items-stretch gap-3">
               <input type="text" name="tech-name" id="tech-name"
-                     class="border-2 w-full rounded outline-zinc-300 p-2 flex-grow" placeholder="Name"
-                     v-model="item.name">
+                class="border-2 w-full rounded outline-zinc-300 p-2 flex-grow" placeholder="Name" v-model="item.name">
               <input type="text" name="tech-icon" id="tech-icon"
-                     class="border-2 w-full rounded outline-zinc-300 p-2 flex-grow" placeholder="Icon"
-                     v-model="item.icon">
+                class="border-2 w-full rounded outline-zinc-300 p-2 flex-grow" placeholder="Icon" v-model="item.icon">
             </div>
             <button type="button" @click="techStack.splice(index, 1)">
               <i class="fas fa-trash-can text-red-500"></i>
             </button>
           </div>
           <button class="w-full p-2 my-3 rounded bg-slate-600 text-white" type="button"
-                  @click="techStack.push({ ...formItem })">
+            @click="techStack.push({ ...formItem })">
             <i class="fas fa-plus"></i>
           </button>
 
-          <button class="w-full p-2 mt-10 rounded bg-green-400 text-white font-bold" type="button"
-                  @click="submit">
+          <button class="w-full p-2 mt-10 rounded bg-green-400 text-white font-bold" type="button" @click="submit">
             Submit
           </button>
         </form>
@@ -120,7 +117,7 @@
 </template>
 
 <script setup lang="ts">
-import {GridStack} from "gridstack";
+import { GridStack } from "gridstack";
 import "gridstack/dist/gridstack.min.css";
 import "gridstack/dist/gridstack-extra.min.css";
 
@@ -139,12 +136,12 @@ const modal = useTemplateRef('modal')
 const modalForm = useTemplateRef('modalForm')
 const grid = ref<GridStack | null>(null);
 const widgets = ref<GridItem[]>([
-  {id: '1', grid: {x: 0, y: 0, w: 2, h: 2},},
-  {id: '2', grid: {x: 2, y: 0, w: 2, h: 2},},
-  {id: '3', grid: {x: 0, y: 2, w: 2, h: 2},},
-  {id: '4', grid: {x: 2, y: 2, w: 2, h: 2},},
-  {id: '5', grid: {x: 3, y: 2, w: 2, h: 2},},
-  {id: '6', grid: {x: 3, y: 2, w: 2, h: 2},},
+  { id: '1', grid: { x: 0, y: 0, w: 2, h: 2 }, },
+  { id: '2', grid: { x: 2, y: 0, w: 2, h: 2 }, },
+  { id: '3', grid: { x: 0, y: 2, w: 2, h: 2 }, },
+  { id: '4', grid: { x: 2, y: 2, w: 2, h: 2 }, },
+  { id: '5', grid: { x: 3, y: 2, w: 2, h: 2 }, },
+  { id: '6', grid: { x: 3, y: 2, w: 2, h: 2 }, },
 ])
 const form = reactive({
   title: '',
