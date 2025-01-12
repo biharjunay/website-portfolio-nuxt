@@ -11,6 +11,9 @@ jobs:
 
     environment:
       name: Production
+
+    env: 
+      DATABASE_URL: ${{ vars.DATABASE_URL }}
       
     steps:
       - name: Checkout code
