@@ -19,7 +19,7 @@ jobs:
       - name: Confirm VERCEL_TOKEN is set
         run: |
           echo ${{ secrets.VERCEL_TOKEN }}
-          echo ${{ DATABASE_URL }} 
+          echo ${{ vars.DATABASE_URL }} 
 
         
       - name: Install Vercel CLI
