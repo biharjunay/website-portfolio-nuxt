@@ -1,7 +1,8 @@
-import { sqliteTable, text, integer } from 'drizzle-orm/sqlite-core'
+// import { pgTable, text, integer } from 'drizzle-orm/sqlite-core'
+import { pgTable, integer, text } from "drizzle-orm/pg-core"
 
-export const heroes = sqliteTable('heroes', {
-  id: integer('id').primaryKey({ autoIncrement: true }),
+export const heroes = pgTable('heroes', {
+  id: integer('id').primaryKey(),
   name: text('name').notNull(),
   email: text('email').notNull().unique(),
   password: text('password').notNull(),
@@ -9,8 +10,8 @@ export const heroes = sqliteTable('heroes', {
   description: text('description')
 })
 
-export const portfolios = sqliteTable('portfolio', {
-  id: integer('id').primaryKey({ autoIncrement: true }),
+export const portfolios = pgTable('portfolio', {
+  id: integer('id').primaryKey(),
   title: text('title').notNull(),
   description: text('description'),
   projectUrl: text('project_url'),
@@ -19,7 +20,7 @@ export const portfolios = sqliteTable('portfolio', {
   imageUrl: text('image_url')
 })
 
-export const educations = sqliteTable('educations', {
+export const educations = pgTable('educations', {
   id: integer('id').primaryKey(),
   major: text('major').notNull(),
   educationName: text('education_name').notNull(),
@@ -30,7 +31,7 @@ export const educations = sqliteTable('educations', {
   description: text('description')
 })
 
-export const experiences = sqliteTable('experiences', {
+export const experiences = pgTable('experiences', {
   id: integer('id').primaryKey(),
   name: text('name').notNull(),
   officeName: text('office_name').notNull(),
@@ -41,7 +42,7 @@ export const experiences = sqliteTable('experiences', {
   description: text('description')
 })
 
-export const certifications = sqliteTable('certifications', {
+export const certifications = pgTable('certifications', {
   id: integer('id').primaryKey(),
   title: text('title').notNull(),
   yearStart: integer('year_start').notNull(),
@@ -50,7 +51,7 @@ export const certifications = sqliteTable('certifications', {
   certificateUrl: text('certificate_url').notNull()
 })
 
-export const achievements = sqliteTable('achievements', {
+export const achievements = pgTable('achievements', {
   id: integer('id').primaryKey(),
   title: text('title').notNull(),
   year: integer('year').notNull(),
