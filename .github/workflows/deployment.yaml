@@ -11,12 +11,15 @@ jobs:
 
     environment: 
       name: Production
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
 
       - name: Confirm VERCEL_TOKEN is set
-        run: echo ${{ secrets.VERCEL_TOKEN }}
+        run: |
+          echo ${{ secrets.VERCEL_TOKEN }}
+          echo $DATABASE_URL
 
         
       - name: Install Vercel CLI
