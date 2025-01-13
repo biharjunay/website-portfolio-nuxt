@@ -1,4 +1,4 @@
-import { z, ZodError } from "zod";
+import {z} from "zod";
 import bcrypt from "bcrypt"
 
 const bodySchema = z.object({
@@ -7,14 +7,9 @@ const bodySchema = z.object({
 })
 
 export default defineEventHandler(async event => {
-    const { email, password } = await readValidatedBody(event, bodySchema.parse)
+    const {email, password} = await readValidatedBody(event, bodySchema.parse)
     const user = (await drizzleDb.select().from(tables.heroes).where(eq(tables.heroes.email, email)))[0]
-    if (!user) throw createError({
-        statusCode: 401,
-        message: "Invalid email or password"
-    })
-    const checkPassword = await bcrypt.compare(password, user.password)
-    if (!checkPassword) throw createError({
+    if (!user || !(await bcrypt.compare(password, user.password))) throw createError({
         statusCode: 401,
         message: "Invalid email or password"
     })

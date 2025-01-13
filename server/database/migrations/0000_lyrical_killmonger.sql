@@ -1,12 +1,12 @@
 CREATE TABLE "achievements" (
-	"id" integer PRIMARY KEY NOT NULL,
+	"id" serial PRIMARY KEY NOT NULL,
 	"title" text NOT NULL,
 	"year" integer NOT NULL,
 	"description" text
 );
 --> statement-breakpoint
 CREATE TABLE "certifications" (
-	"id" integer PRIMARY KEY NOT NULL,
+	"id" serial PRIMARY KEY NOT NULL,
 	"title" text NOT NULL,
 	"year_start" integer NOT NULL,
 	"year_end" integer NOT NULL,
@@ -15,7 +15,7 @@ CREATE TABLE "certifications" (
 );
 --> statement-breakpoint
 CREATE TABLE "educations" (
-	"id" integer PRIMARY KEY NOT NULL,
+	"id" serial PRIMARY KEY NOT NULL,
 	"major" text NOT NULL,
 	"education_name" text NOT NULL,
 	"month_start" integer NOT NULL,
@@ -26,7 +26,7 @@ CREATE TABLE "educations" (
 );
 --> statement-breakpoint
 CREATE TABLE "experiences" (
-	"id" integer PRIMARY KEY NOT NULL,
+	"id" serial PRIMARY KEY NOT NULL,
 	"name" text NOT NULL,
 	"office_name" text NOT NULL,
 	"month_start" integer NOT NULL,
@@ -37,7 +37,7 @@ CREATE TABLE "experiences" (
 );
 --> statement-breakpoint
 CREATE TABLE "heroes" (
-	"id" integer PRIMARY KEY NOT NULL,
+	"id" serial PRIMARY KEY NOT NULL,
 	"name" text NOT NULL,
 	"email" text NOT NULL,
 	"password" text NOT NULL,
@@ -47,7 +47,7 @@ CREATE TABLE "heroes" (
 );
 --> statement-breakpoint
 CREATE TABLE "portfolio" (
-	"id" integer PRIMARY KEY NOT NULL,
+	"id" serial PRIMARY KEY NOT NULL,
 	"title" text NOT NULL,
 	"description" text,
 	"project_url" text,

@@ -25,7 +25,6 @@ export default defineNuxtConfig({
   nitro: {
     experimental: {
       tasks: true,
-      database: true
     },
     plugins: ['plugins/error.ts'],
     preset: "vercel"
