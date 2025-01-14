@@ -16,14 +16,24 @@ const text = useTemplateRef("text")
 const imageSrc = ref<string | null>(null);
 const emit = defineEmits(['onChange'])
 
+const props = defineProps({
+  imageUrl: {
+    type: String,
+  }
+})
+
+onMounted(() => {
+  if (props.imageUrl) imageSrc.value = props.imageUrl
+})
+
 function onDragOver(event: DragEvent) {
     event.target && (event.target as HTMLElement).classList.add("drag-over");
     text.value!.style.display = "none"
-};
+}
 function onDragLeave(event: DragEvent) {
     event.target && (event.target as HTMLElement).classList.remove("drag-over");
     text.value!.style.display = "block"
-};
+}
 function onDrop(event: DragEvent) {
     (event.target as HTMLElement).classList.remove("drag-over");
     const file = event.dataTransfer?.files[0];
@@ -32,7 +42,7 @@ function onDrop(event: DragEvent) {
     } else {
         alert("Please drop a valid image file.");
     }
-};
+}
 function onFileChange(event: Event) {
     const input = event.target as HTMLInputElement;
     const file = input.files?.[0];
@@ -41,7 +51,7 @@ function onFileChange(event: Event) {
     } else {
         alert("Please select a valid image file.");
     }
-};
+}
 function loadImage(file: File) {
     const reader = new FileReader();
     reader.onload = (e) => {
@@ -49,7 +59,7 @@ function loadImage(file: File) {
     };
     reader.readAsDataURL(file);
     emit("onChange", file)
-};
+}
 </script>
 
 <style scoped>
@@ -71,6 +81,7 @@ function loadImage(file: File) {
     text-align: center;
     cursor: pointer;
     position: relative;
+    padding: 10px;
 }
 
 .drop-area.drag-over {

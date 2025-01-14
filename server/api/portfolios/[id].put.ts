@@ -1,4 +1,5 @@
 import { z } from "zod"
+import {del} from "@vercel/blob";
 
 const bodySchema = z.object({
     title: z.string().nonempty(),
@@ -16,6 +17,7 @@ export default defineEventHandler(async event => {
         status: 422,
         message: 'Data is not found'
     })
-    const body = await readValidatedBody(event, bodySchema.parseAsync)
-    return await drizzleDb.update(tables.portfolios).set(body).where(eq(tables.portfolios.id, parseInt(id))).returning()
+    const body = await readValidatedBody(event, bodySchema.parse)
+    if (body.imageUrl !== data.imageUrl) await del(data.imageUrl!)
+    return drizzleDb.update(tables.portfolios).set(body).where(eq(tables.portfolios.id, parseInt(id))).returning();
 })

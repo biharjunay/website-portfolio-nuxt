@@ -38,12 +38,7 @@ CREATE TABLE "experiences" (
 --> statement-breakpoint
 CREATE TABLE "heroes" (
 	"id" serial PRIMARY KEY NOT NULL,
-	"name" text NOT NULL,
-	"email" text NOT NULL,
-	"password" text NOT NULL,
-	"avatar" text,
-	"description" text,
-	CONSTRAINT "heroes_email_unique" UNIQUE("email")
+	"key" text NOT NULL
 );
 --> statement-breakpoint
 CREATE TABLE "portfolio" (

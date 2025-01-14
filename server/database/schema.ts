@@ -2,11 +2,8 @@ import {pgTable, integer, text, serial} from "drizzle-orm/pg-core"
 
 export const heroes = pgTable('heroes', {
     id: serial('id').primaryKey(),
-    name: text('name').notNull(),
-    email: text('email').notNull().unique(),
-    password: text('password').notNull(),
-    avatar: text('avatar'),
-    description: text('description')
+    key: text('key').notNull(),
+    value: text('key').notNull(),
 })
 
 export const portfolios = pgTable('portfolio', {

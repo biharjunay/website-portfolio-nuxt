@@ -24,13 +24,10 @@ const props = defineProps<{
 
 onBeforeMount(() => {
   if (props.size) modalSize.value = props.size
-  console.log(modalSize.value)
 })
 
 onMounted(() => {
   window.addEventListener("keydown", handleKeyDown)
-
-  // Use props.size to set modalSize if it exists
   if (props.size) {
     modalSize.value = props.size
   }
@@ -50,11 +47,11 @@ function openModal(): void {
 
 function closeModal(): void {
   isVisible.value = false
+  emit('close', null)
 }
 
 // Computed style based on modalSize value
 const modalStyle = computed(() => {
-  console.log(modalSize.value)
   return {
     'max-width': modalSize.value === 'sm' ? '640px' :
       modalSize.value === 'md' ? '768px' :
