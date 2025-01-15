@@ -14,7 +14,7 @@
               <p class="mt-5">Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita beatae impedit suscipit
                 et labore cum placeat fuga ad, velit dolore.</p>
               <button
-                class="self-end mt-5 bg-black rounded-full text-white px-5 py-2 text-xs hover:text-black hover:bg-white hover:shadow">See
+                class="self-end mt-5 bg-black rounded-full text-white px-5 py-2 text-xs hover:text-black hover:bg-white hover:shadow" @click="navigateTo('/portfolio')">See
                 More Projects <i class="fas fa-arrow-right ml-5"></i></button>
             </div>
           </div>
@@ -45,6 +45,7 @@
 
 <script setup lang="ts">
 import type { EChartsOption } from 'echarts';
+import { NavigationFailureType } from 'vue-router';
 
 const chart = useTemplateRef('v-chart')
 const chartOptions = ref<EChartsOption>(

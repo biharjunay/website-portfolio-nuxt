@@ -12,15 +12,19 @@
       </AuthState>
     </div>
     <div class="grid-stack mt-10">
-      <div v-for="widget in widgets" :key="widget.id" :id="widget.id" :gs-id="widget.id" :gs-x="widget.grid.x"
-           :gs-y="widget.grid.y" :gs-w="widget.grid.w" :gs-h="widget.grid.h">
+      <span v-if="loading" v-for="widget in widgets" :key="widget.id" :id="widget.id" :gs-id="widget.id"
+            :gs-w="widget.grid.w" :gs-h="widget.grid.h">
+        <SkeletonLoader class="w-[98%] h-[98%]"></SkeletonLoader>
+      </span>
+      <div v-if="!loading" v-for="widget in widgets" :key="widget.id" :id="widget.id" :gs-id="widget.id" :gs-w="widget.grid.w"
+           :gs-h="widget.grid.h">
         <div tabindex="0" onclick="this.focus()"
-            class="grid-stack-item-content relative group p-4 bg-cover bg-center rounded-md shadow-md flex items-center justify-center text-gray-700 cursor-pointer hover:bg-slate-500 focus:bg-slate-500 active:cursor-grabbing">
+             class="grid-stack-item-content relative group p-4 bg-cover bg-center rounded-md shadow-md flex items-center justify-center text-gray-700 cursor-pointer hover:bg-slate-500 focus:bg-slate-500 active:cursor-grabbing">
           <img :src="widget.data?.imageUrl"
                class="absolute w-full h-full object-cover group-hover:brightness-50 group-focus:brightness-50 duration-200 transition-all">
           <span
               class="relative hidden group-hover:flex group-focus:flex flex-col justify-center items-center gap-4 font-bold text-white">
-            <h5 class="text-[2em]">{{ widget.data?.title }}</h5>
+            <h5 class="text-[2em] text-center">{{ widget.data?.title }}</h5>
             <button class="bg-zinc-600 hover:bg-zinc-700 active:bg-zinc-900 px-3 py-1 rounded-lg"
                     @click="() => openModal(widget)">See Detail</button>
           </span>
@@ -123,9 +127,14 @@
                   :class="`bg-${editMode ? 'yellow' : 'green'}-600`" type="submit" :disabled="loading">
             <span v-if="!loading">Submit</span>
             <div role="status" v-if="loading">
-              <svg aria-hidden="true" class="w-8 h-8 text-gray-200 animate-spin dark:text-gray-600 fill-blue-600" viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z" fill="currentColor"/>
-                <path d="M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z" fill="currentFill"/>
+              <svg aria-hidden="true" class="w-8 h-8 text-gray-200 animate-spin dark:text-gray-600 fill-blue-600"
+                   viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path
+                    d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z"
+                    fill="currentColor"/>
+                <path
+                    d="M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z"
+                    fill="currentFill"/>
               </svg>
               <span class="sr-only">Loading...</span>
             </div>
@@ -136,11 +145,7 @@
   </Modal>
 </template>
 
-<script setup lang="ts">
-import {GridStack} from "gridstack";
-import "gridstack/dist/gridstack.min.css";
-import "gridstack/dist/gridstack-extra.min.css";
-
+<script lang="ts">
 interface GridItem {
   id: string;
   grid: {
@@ -152,6 +157,22 @@ interface GridItem {
   data?: any
 }
 
+const gridItem: GridItem[] = [
+  {id: '1', grid: {x: 0, y: 0, w: 2, h: 2},},
+  {id: '2', grid: {x: 2, y: 0, w: 2, h: 2},},
+  {id: '3', grid: {x: 0, y: 2, w: 2, h: 2},},
+  {id: '4', grid: {x: 2, y: 2, w: 2, h: 2},},
+  {id: '5', grid: {x: 3, y: 2, w: 2, h: 2},},
+  {id: '6', grid: {x: 3, y: 2, w: 2, h: 2},},
+]
+</script>
+
+<script setup lang="ts">
+import {GridStack} from "gridstack";
+import "gridstack/dist/gridstack.min.css";
+import "gridstack/dist/gridstack-extra.min.css";
+import SkeletonLoader from "~/components/SkeletonLoader.vue";
+
 const alertStore = useAlertStore();
 const loading = ref(false)
 const itemDetail = ref<any>({})
@@ -161,14 +182,7 @@ const modal = useTemplateRef('modal')
 const modalForm = useTemplateRef('modalForm')
 const grid = ref<GridStack | null>(null);
 
-const widgets = ref<GridItem[]>([
-  {id: '1', grid: {x: 0, y: 0, w: 2, h: 2},},
-  {id: '2', grid: {x: 2, y: 0, w: 2, h: 2},},
-  {id: '3', grid: {x: 0, y: 2, w: 2, h: 2},},
-  {id: '4', grid: {x: 2, y: 2, w: 2, h: 2},},
-  {id: '5', grid: {x: 3, y: 2, w: 2, h: 2},},
-  {id: '6', grid: {x: 3, y: 2, w: 2, h: 2},},
-])
+const widgets = ref<GridItem[]>(gridItem)
 
 let form = reactive({
   title: '',
@@ -199,8 +213,12 @@ onUnmounted(() => {
 })
 
 async function loadData() {
-  widgets.value = [];
+  loading.value = true;
+  setTimeout(() => {
+    initGridStack();
+  }, 0);
   const response = await $fetch("/api/portfolios");
+  widgets.value = [];
   response.forEach((item, index) => {
     widgets.value.push({
       id: index.toString(),
@@ -211,6 +229,7 @@ async function loadData() {
       }
     });
   });
+  loading.value = false;
 
   setTimeout(() => {
     initGridStack();
@@ -318,7 +337,6 @@ async function submit() {
   } catch (err: any) {
     console.error(err)
     alertStore.addAlert(err.message, "danger")
-  } finally {
     loading.value = false
   }
 }

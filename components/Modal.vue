@@ -1,6 +1,6 @@
 <template>
   <Transition>
-    <div v-if="isVisible" class="fixed inset-0 bg-zinc-900 bg-opacity-75 z-50 h-dvh overflow-auto p-3"
+    <div v-if="isVisible" class="fixed inset-0 bg-zinc-900 bg-opacity-75 z-[1001] h-dvh overflow-auto p-3"
       @click.self="closeModal">
       <div :style="modalStyle" class="bg-white p-6 rounded-lg shadow-lg w-full text-black m-auto">
         <slot></slot>
