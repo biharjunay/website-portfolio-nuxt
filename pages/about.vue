@@ -92,21 +92,22 @@
         <div class="grid grid-cols-1 md:grid-cols-2 gap-5 mt-5">
             <div>
                 <div class="rounded-xl divide-y divide-slate-100 bg-gradient-to-r from-slate-900 to-slate-800">
-                    <div class="p-4 flex cursor-pointer">
+                    <a class="p-4 flex cursor-pointer" v-for="(item, index) in certificationsData" :key="index" :href="item.certificateUrl" target="_blank">
                         <div class="flex-grow">
-                            <h6 class="poppins-bold text-xl">Google IT Support</h6>
-                            <b>2022-2025</b>
-                            <p class="mt-5">Credential: 12312313</p>
+                            <h6 class="poppins-bold text-xl">{{ item.title }}</h6>
+                            <b>{{ item.yearStart + '-' + item.yearEnd }}</b>
+                            <p class="mt-5">Credential: {{ item.credentials }}</p>
                         </div>
                         <div class="flex items-center">
                             <i class="fa-solid fa-angle-right align-middle"></i>
                         </div>
-                    </div>
-                    <div class="p-4 flex cursor-pointer">
+                    </a>
+
+                    <div class="p-4 flex cursor-pointer" v-if="loading" v-for="item in [1,2,3]" :key="item">
                         <div class="flex-grow">
-                            <h6 class="poppins-bold text-xl">MTCNA</h6>
-                            <b>2022-2025</b>
-                            <p class="mt-5">Credential: 12312313</p>
+                            <SkeletonLoader class="w-32 h-5 rounded"/>
+                            <SkeletonLoader class="w-24 h-5 rounded mt-1"/>
+                            <SkeletonLoader class="w-24 h-5 rounded mt-5"/>
                         </div>
                         <div class="flex items-center">
                             <i class="fa-solid fa-angle-right align-middle"></i>
@@ -119,18 +120,27 @@
             <div>
                 <ol class="relative space-y-2 mt-5" style="counter-reset: step 0;">
                     <li class="relative pl-10 xl:grid grid-cols-5 gap-16 before:content-[counter(step)] before:absolute before:left-0 before:flex before:items-center before:justify-center before:w-[calc(1.375rem+1px)] before:h-[calc(1.375rem+1px)] before:text-[0.625rem] before:font-bold before:text-slate-700 before:rounded-md before:shadow-sm before:ring-1 before:ring-slate-900/5 before:bg-white dark:before:bg-slate-700 dark:before:text-slate-200 dark:before:ring-0 dark:before:shadow-none dark:before:highlight-white/5 pb-8 after:absolute after:top-[calc(1.875rem+1px)] after:bottom-0 after:left-[0.6875rem] after:w-px after:bg-slate-200 dark:after:bg-slate-200/5 w-full"
-                        style="counter-increment: step 1;">
+                        style="counter-increment: step 1;" v-if="!loading" v-for="(item, index) in achievementsData" :key="index">
                         <div class="mb-6 col-span-full xl:mb-0 w-full">
                             <h4
-                                class="text-lg leading-6 text-white font-semibold poppins-bold mb-2 dark:text-slate-200">
-                                #1 Regency
-                                LKS SMK Web Technologies</h4>
+                                class="text-lg leading-6 text-white font-semibold poppins-bold mb-2 dark:text-slate-200">{{ item.title }}</h4>
                             <div class="prose prose-slate prose-sm dark:prose-dark">
-                                <p class="mt-3 poppins-bold">2023</p>
-                                <p class="mt-3">Lorem ipsum dolor sit amet consectetur adipisicing elit. Placeat, porro
-                                    exercitationem?
-                                    Repellendus eveniet nobis totam? Tempore necessitatibus placeat dolore quidem.</p>
+                                <p class="mt-3 poppins-bold">{{ item.year }}</p>
+                                <p class="mt-3">{{ item.description }}</p>
                             </div>
+                        </div>
+                    </li>
+
+                    <li class="relative pl-10 xl:grid grid-cols-5 gap-16 before:content-[counter(step)] before:absolute before:left-0 before:flex before:items-center before:justify-center before:w-[calc(1.375rem+1px)] before:h-[calc(1.375rem+1px)] before:text-[0.625rem] before:font-bold before:text-slate-700 before:rounded-md before:shadow-sm before:ring-1 before:ring-slate-900/5 before:bg-white dark:before:bg-slate-700 dark:before:text-slate-200 dark:before:ring-0 dark:before:shadow-none dark:before:highlight-white/5 pb-8 after:absolute after:top-[calc(1.875rem+1px)] after:bottom-0 after:left-[0.6875rem] after:w-px after:bg-slate-200 dark:after:bg-slate-200/5 w-full"
+                        style="counter-increment: step 1;" v-if="loading" v-for="(_, index) in [0, 1]" :key="index">
+                        <div class="mb-6 col-span-full xl:mb-0 w-full">
+                            <SkeletonLoader class="w-64 h-5 mb-3" />
+                            <SkeletonLoader class="w-32 h-5 mb-2" />
+                            <SkeletonLoader class="w-16 h-5" />
+                            <SkeletonLoader class="w-full h-3 mt-5" />
+                            <SkeletonLoader class="w-full h-3 mt-2" />
+                            <SkeletonLoader class="w-full h-3 mt-2" />
+                            <SkeletonLoader class="w-full h-3 mt-2" />
                         </div>
                     </li>
                 </ol>
@@ -155,6 +165,8 @@
     </div>
 </template>
 <script setup lang="ts">
+import SkeletonLoader from '~/components/SkeletonLoader.vue'
+
 
 const alertStore = useAlertStore()
 
