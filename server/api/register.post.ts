@@ -16,7 +16,7 @@ const bodySchema = z.object({
 
 export default defineEventHandler(async event => {
     const body = await readValidatedBody(event, bodySchema.parse);
-    const user = (await drizzleDb.select().from(tables.heroes).where(eq(tables.heroes.email, body.email)))[0];
+    const user = (await drizzleDb.select().from(tables.users).where(eq(tables.users.email, body.email)))[0];
     if (user) throw createError({
         status: 422,
         message: 'Email is exist'
@@ -24,5 +24,5 @@ export default defineEventHandler(async event => {
 
     delete body.confirmPassword
     body.password = await bcrypt.hash(body.password, 10)
-    return drizzleDb.insert(tables.heroes).values(body).returning();
+    return drizzleDb.insert(tables.users).values(body).returning();
 });

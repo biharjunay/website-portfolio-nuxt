@@ -1,9 +1,13 @@
 import {pgTable, integer, text, serial} from "drizzle-orm/pg-core"
 
-export const heroes = pgTable('heroes', {
+export const users = pgTable('users', {
     id: serial('id').primaryKey(),
-    key: text('key').notNull(),
-    value: text('key').notNull(),
+    name: text('name').notNull(),
+    position: text('position'),
+    description: text('description'),
+    email: text('email'),
+    password: text('password').notNull(),
+    imageUrl: text('image_url')
 })
 
 export const portfolios = pgTable('portfolio', {
@@ -32,9 +36,9 @@ export const experiences = pgTable('experiences', {
     name: text('name').notNull(),
     officeName: text('office_name').notNull(),
     monthStart: integer('month_start').notNull(),
-    monthEnd: integer('month_end').notNull(),
+    monthEnd: integer('month_end'),
     yearStart: integer('year_start').notNull(),
-    yearEnd: integer('year_end').notNull(),
+    yearEnd: integer('year_end'),
     description: text('description')
 })
 
