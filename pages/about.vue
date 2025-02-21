@@ -37,7 +37,7 @@
               </div>
             </div>
           </li>
-          <li class="relative pl-10 xl:grid grid-cols-5 gap-16 before:font-['FontAwesome'] before:content-['\2b'] before:absolute before:left-0 before:flex before:items-center before:justify-center before:w-[calc(1.375rem+1px)] before:h-[calc(1.375rem+1px)] before:text-[0.625rem] before:font-bold before:text-slate-700 before:rounded-md before:shadow-sm before:ring-1 before:ring-slate-900/5 before:bg-white dark:before:bg-slate-700 dark:before:text-slate-200 dark:before:ring-0 dark:before:shadow-none dark:before:highlight-white/5 pb-8"></li>
+          <li class="relative pl-10 xl:grid grid-cols-5 gap-16 before:font-['FontAwesome'] before:content-['\2b'] before:absolute before:left-0 before:flex before:items-center before:justify-center before:w-[calc(1.375rem+1px)] before:h-[calc(1.375rem+1px)] before:text-[0.625rem] before:font-bold before:text-slate-700 before:rounded-md before:shadow-sm before:ring-1 before:ring-slate-900/5 before:bg-white dark:before:bg-slate-700 dark:before:text-slate-200 dark:before:ring-0 dark:before:shadow-none dark:before:highlight-white/5 pb-8" @click="addData"></li>
 
           <li class="relative pl-10 xl:grid grid-cols-5 gap-16 before:content-[counter(step)] before:absolute before:left-0 before:flex before:items-center before:justify-center before:w-[calc(1.375rem+1px)] before:h-[calc(1.375rem+1px)] before:text-[0.625rem] before:font-bold before:text-slate-700 before:rounded-md before:shadow-sm before:ring-1 before:ring-slate-900/5 before:bg-white dark:before:bg-slate-700 dark:before:text-slate-200 dark:before:ring-0 dark:before:shadow-none dark:before:highlight-white/5 pb-8 after:absolute after:top-[calc(1.875rem+1px)] after:bottom-0 after:left-[0.6875rem] after:w-px after:bg-slate-200 dark:after:bg-slate-200/5 w-full"
               style="counter-increment: step 1;" v-if="loading" v-for="(_, index) in [0, 1]" :key="index">
@@ -161,14 +161,16 @@
           <i class="w-3 h-3 rounded-full bg-green-500"></i>
         </div>
         <div class="w-full h-96 overflow-y-auto rounded-b-lg">
-          <iframe :src="pdfUrl" class="w-full h-full" frameborder="0"></iframe>
+          <iframe v-if="!loading" :src="pdfUrl" class="w-full h-full"></iframe>
+          <SkeletonLoader v-if="loading" class="h-full"></SkeletonLoader>
         </div>
       </div>
     </div>
   </div>
   <Modal ref="modalForm">
-    <div class="bg-red-600">
-      lorem ipsum dolor sit amet
+    <div class="bg-red-600" v-if="formType === 'educations'">
+      <label for="education-name">Education Name</label>
+      <input type="text" class="w-100 rounded-lg border border-gray-300">
     </div>
   </Modal>
 </template>
@@ -176,6 +178,9 @@
 import SkeletonLoader from '~/components/SkeletonLoader.vue'
 
 const alertStore = useAlertStore()
+
+const modalForm = useTemplateRef('modalForm')
+const formType = ref<string>("")
 
 let pdfUrl = ref<string>('')
 const loading = ref(false)
@@ -218,6 +223,13 @@ async function loadData(): Promise<void> {
   }
 }
 
+function addData(type: string) {
+  formType.value = type
+  modalForm.value?.openModal()
+}
 
-
+function editData(type: string, item: Record<string, any>) {
+  formType.value = type
+  modalForm.value?.openModal()
+}
 </script>

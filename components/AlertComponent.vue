@@ -11,9 +11,7 @@
 <script setup lang="ts">
 import { useAlertStore } from '~/stores/alert';
 
-// Access the alert store
 const alertStore = useAlertStore();
-
 function removeAlert(id: number) {
     alertStore.removeAlert(id);
 }

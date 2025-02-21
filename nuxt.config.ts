@@ -8,7 +8,8 @@ export default defineNuxtConfig({
     'nuxt-echarts',
     'nuxt-authorization',
     'nuxt-auth-utils',
-    '@pinia/nuxt'
+    '@pinia/nuxt',
+    '@nuxt/ui'
   ],
   fileStorage: {
     mount: process.env.MOUNT
