@@ -23,38 +23,53 @@
     src: url('../fonts/Poppins-Regular.ttf');
 }
 
+@font-face {
+    font-family: 'Gloomie-Saturday';
+    src: url('../fonts/Gloomie-Saturday.otf') format("opentype");
+}
+
 html {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    background-color: #04132A;
+    background-color: #000000;
     font-family: 'Roboto';
+    &::before {
+        content: "";
+        position: absolute;
+        background-color: #4b7eff;
+    }
 }
 
 main.main {
     height: 100vh;
-    background: #04132A;
+    // background: #150B2A;
     background-size: cover;
+
 }
 
 .font-share-tech {
-    font-family: 'Share-Tech';
+    font-family: 'Share-Tech', serif, sans-serif;
 }
 
 .poppins-bold {
-    font-family: 'Poppins-Bold';
+    font-family: 'Poppins-Bold', serif, sans-serif;
 }
 
 .poppins-regular {
-    font-family: 'Poppins-Regular';
+    font-family: 'Poppins-Regular', serif, sans-serif;
 }
 
 .roboto {
-    font-family: 'Roboto';
+    font-family: 'Roboto', serif, sans-serif;
 }
 
 .roboto-bold {
-    font-family: 'Roboto-Bold';
+    font-family: 'Roboto-Bold', serif, sans-serif;
+}
+
+.font-gloomie {
+    font-family: 'Gloomie-Saturday', serif, sans-serif;
 }
 
 ::-webkit-scrollbar {
