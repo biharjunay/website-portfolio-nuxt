@@ -41,7 +41,7 @@ onBeforeUnmount(() => {
 })
 </script>
 
-<style scoped>
+<!-- <style scoped>
 /* Fullscreen animated gradient background */
 #morph {
     opacity: 0;
@@ -129,4 +129,4 @@ onBeforeUnmount(() => {
         transform: translateY(-200px) scale(2);
     }
 }
-</style>
+</style> -->

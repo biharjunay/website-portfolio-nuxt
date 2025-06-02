@@ -28,24 +28,25 @@
     src: url('../fonts/Gloomie-Saturday.otf') format("opentype");
 }
 
+@font-face {
+    font-family: 'OldschoolGrotesk';
+    src: url('../fonts/OldschoolGrotesk-NormalExtraBold.otf') format("opentype");
+}
+
 html {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    background-color: #000000;
     font-family: 'Roboto';
     &::before {
         content: "";
         position: absolute;
-        background-color: #4b7eff;
     }
 }
 
 main.main {
     height: 100vh;
-    // background: #150B2A;
     background-size: cover;
-
 }
 
 .font-share-tech {
@@ -70,6 +71,10 @@ main.main {
 
 .font-gloomie {
     font-family: 'Gloomie-Saturday', serif, sans-serif;
+}
+
+.font-oldschoool {
+    font-family: 'OldschoolGrotesk', serif, sans-serif;
 }
 
 ::-webkit-scrollbar {
