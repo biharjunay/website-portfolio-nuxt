@@ -23,10 +23,10 @@
 <script setup lang="ts">
 const route = useRoute()
 const sidebarItem = ref<Array<{ icon: string, name: string }>>([
-    { icon: 'fas fa-house', name: 'home' },
+    // { icon: 'fas fa-house', name: 'home' },
     { icon: 'fas fa-user', name: 'about' },
     { icon: 'fas fa-briefcase', name: 'portfolio' },
-    { icon: 'fas fa-phone', name: 'contact' },
-    { icon: 'fas fa-ellipsis-h', name: 'other' },
+    // { icon: 'fas fa-phone', name: 'contact' },
+    // { icon: 'fas fa-ellipsis-h', name: 'other' },
 ])
 </script>

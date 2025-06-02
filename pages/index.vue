@@ -3,6 +3,6 @@
 const { loggedIn, user, session, fetch, clear } = useUserSession()
 onMounted(() => {
     console.log(loggedIn.value)
-    navigateTo('/home')
+    navigateTo('/about')
 })
 </script>
