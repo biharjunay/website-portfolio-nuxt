@@ -8,7 +8,7 @@ const bodySchema = z.object({
 
 export default defineEventHandler(async event => {
     const {email, password} = await readValidatedBody(event, bodySchema.parse)
-    const user = (await drizzleDb.select().from(tables.heroes).where(eq(tables.heroes.email, email)))[0]
+    const user = (await drizzleDb.select().from(tables.users).where(eq(tables.users.email, email)))[0]
     if (!user || !(await bcrypt.compare(password, user.password))) throw createError({
         statusCode: 401,
         message: "Invalid email or password"
