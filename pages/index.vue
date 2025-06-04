@@ -5,7 +5,7 @@
 
   <div class="relative w-full overflow-x-hidden bg-gray-100 text-black">
     <section id="sect1" class="h-screen flex justify-center items-center relative">
-      <img id="rocket" src="@/assets/images/rocket.png" alt="rocket" class="absolute w-20">
+      <img id="rocket" src="@/assets/images/rocket.png" alt="rocket" class="absolute w-10 md:w-20">
       <div class="font-gloomie">
         <div class="portfolio-text flex items-end gap-2 pb-10">
           <span v-for="(_, i) in portfolioLetters" :key="i"
@@ -33,8 +33,6 @@
       <div v-for="item in [1, 2, 3, 4]" :key="item" class="bg-black flex-grow"></div>
     </section>
   </div>
-
-  <div class="absolute top-0 left-0 rounded-full w-10 h-10 bg-black"></div>
 </template>
 
 <script setup lang="ts">
@@ -50,10 +48,16 @@ const lettersRefs: HTMLSpanElement[] = [];
 const letters = ref<HTMLSpanElement[]>([]);
 
 const portfolioLetters = ['P', 'o', 'r', 't', 'f', 'o', 'l', 'i', 'o'];
-const letterClass = (i: number) => [
-  'text-[15vw]', 'text-[10.35vw] mb-3', 'text-[12vw] mb-3 -rotate-12',
-  'text-[15vw]', 'text-[12vw] mb-5', 'text-[13.5vw]',
-  'text-[16.5vw]', 'text-[15vw] rotate-12', 'text-[13.5vw]'
+const letterClass = (i) => [
+  'text-[15vw] md:text-[7.5vw]',
+  'text-[10.35vw] md:text-[5.175vw] mb-3',
+  'text-[12vw] md:text-[6vw] mb-3 -rotate-12',
+  'text-[15vw] md:text-[7.5vw]',
+  'text-[12vw] md:text-[6vw] mb-5',
+  'text-[13.5vw] md:text-[6.75vw]',
+  'text-[16.5vw] md:text-[8.25vw]',
+  'text-[15vw] md:text-[7.5vw] rotate-12',
+  'text-[13.5vw] md:text-[6.75vw]'
 ][i];
 
 function animatePortfolioLetters() {
